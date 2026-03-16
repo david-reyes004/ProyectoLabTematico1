@@ -1,0 +1,61 @@
+#seccion-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+.login-card {
+    background: rgba(15, 16, 20, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 102, 255, 0.4);
+    border: 1px solid rgba(0, 102, 255, 0.2);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    width: 350px;
+}
+.login-card h2 { color: #ffcc00; margin-bottom: 20px; font-family: sans-serif; }
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: #252833;
+    color: white;
+    box-sizing: border-box;
+    outline: none;
+}
+.login-card input:focus { border: 1px solid #0066ff; }
+.btn-principal {
+    background: #ffcc00;
+    color: #000;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+.btn-principal:hover { transform: scale(1.02); background: #ffe066; }
+.hidden { display: none !important; }
+.btn-cerrar {
+    background: transparent;
+    color: #ff4444; /* Color rojo para indicar "salida" o "peligro" */
+    border: 1px solid #ff4444;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+.btn-cerrar:hover {
+    background: #ff4444;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+}
