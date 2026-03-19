@@ -1,15 +1,10 @@
-package com.proyecto.lab_tem1.entity;
+package com.proyecto.lab_tem1.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "usuarios")
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private long id;
     private String nombre;
     private String correo;
+    private String password;
 
     public long getId() {
         return id;
@@ -42,7 +37,4 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    private String password;
-
 }
