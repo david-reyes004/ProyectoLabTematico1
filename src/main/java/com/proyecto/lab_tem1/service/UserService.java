@@ -14,4 +14,8 @@ public class UserService {
     public void guardarUsuario(Usuario usuario) {
         userRepository.save(usuario);
     }
+
+    public Usuario validarLogin(String correo, String password) {
+        return userRepository.findByCorreoAndPassword(correo, password);
+    }
 }

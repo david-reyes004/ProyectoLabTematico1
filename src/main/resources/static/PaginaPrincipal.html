@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/Principal.css?v=2">
+    <meta charset="UTF-8">
+    <title>Principal</title>
+</head>
+<body>
+<header>
+    <nav class="encabezado">
+        <button class="boton-img"><img src="imagenes/Logo.jpeg" alt="inicio"></button>
+        <a href="PaginaPrincipal.html">INICIO</a>
+        <a href="Eventos.html">EVENTOS</a>
+        <a href="">MIS EVENTOS</a>
+        <a href="">ACERCA DE</a>
+        <a href="IniciarSesion.html" onclick="cerrarSesion()">CERRAR SESION</a>
+    </nav>
+</header>
+<main>
+
+    <h2 id="saludo" style="text-align: center; margin-top: 20px; font-family: 'Poppins', sans-serif;">¡Hola, bienvenido!</h2>
+
+    <div class="slider-box">
+        <ul>
+            <li>
+                <img src="imagenes/viveLatino.jpg" alt="VIVE LATINO">
+                <div class="texto">
+                    <h2>VIVE LATINO</h2>
+                    <p>El Festival Vive Latino 2026 se celebra los días sábado
+                        14 y domingo 15 de marzo de 2026 en el Estadio GNP Seguros
+                        (anteriormente Foro Sol) de la Ciudad de México</p>
+                </div>
+            </li>
+            <li>
+                <img src="imagenes/TOMORROWLAND.png" alt="TOMORROWLAND">
+                <div class="texto">
+                    <h2>TOMORROWLAND</h2>
+                    <p>Un nuevo capítulo de magia está a punto de comenzar.
+                        Prepárate para unirte a la Gente del Mañana en Tomorrowland
+                        Tailandia 2026. </p>
+                </div>
+            </li>
+            <li>
+                <img src="imagenes/CorCap.png" alt="CORONA CAPITAL">
+                <div class="texto">
+                    <h2>CORONA CAPITAL</h2>
+                    <p>Corona Capital les da la bienvenida a todos,
+                        y realmente nos esforzamos para que nuestro ambiente
+                        sea accesible para nuestros invitados con discapacidades.
+                        Durante el festival, el evento tendrá estacionamientos cercanos
+                        a la entrada general, baños y otras facilidades como
+                        rampas designadas para usuarios con sillas de ruedas y sus acompañantes. </p>
+                </div>
+            </li>
+            <li>
+                <img src="imagenes/EDC.png" alt="EDC">
+                <div class="texto">
+                    <h2>EDC</h2>
+                    <p>¡Baila bajo los vibrantes cielos de la CDMX!
+                        De día, explora su cultura, calles llenas de
+                        color y sabores que enamoran. De noche, entra
+                        al mundo de alta energía de EDC México: DJs de
+                        clase mundial, atracciones que aceleran el pulso, arte
+                        inmersivo y fuegos artificiales que te dejarán sin aliento.
+                        Déjate llevar por la música que nos une.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</main>
+<footer>
+    <p>Sobre Nosostros</p>
+</footer>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('nombre')) {
+        const nombreUsuario = urlParams.get('nombre');
+
+        localStorage.setItem('usuarioDataFestival', nombreUsuario);
+
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    const nombreGuardado = localStorage.getItem('usuarioDataFestival');
+
+    if (nombreGuardado) {
+        document.getElementById('saludo').innerText = '¡Hola, ' + nombreGuardado + '!';
+    }
+
+    function cerrarSesion() {
+        localStorage.removeItem('usuarioDataFestival');
+    }
+</script>
+</body>
+</html>

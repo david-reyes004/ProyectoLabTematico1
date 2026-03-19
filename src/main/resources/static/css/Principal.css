@@ -7,7 +7,7 @@ body{
     background:
             radial-gradient(circle at top, rgba(5,78,111,0.7), transparent 50%),
             linear-gradient(to bottom, rgb(17,17,32), black);
-    overflow-y:auto;
+    overflow-x: hidden; /* Evita scroll horizontal no deseado */
     margin:0;
     padding: 0;
 }
@@ -72,17 +72,19 @@ nav a:hover{
     color: rgb(253, 217, 0);
     box-shadow: 0 0 12px rgba(255, 232, 66, 0.81);
 }
-<!---->
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font: 1em sans-serif;
 }
 .slider-box{
     width: 1280px;
+    max-width: 100%; /* Para que no se salga en pantallas chicas */
     height: auto;
-    margin: 10px auto 0;
+    margin: 10px auto 20px;
+    overflow: hidden; /* Oculta las imágenes que no están en turno */
+    border-radius: 15px; /* Opcional: bordes redondeados */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 .slider-box ul{
     display: flex;
@@ -93,22 +95,32 @@ nav a:hover{
 .slider-box li{
     width: 100%;
     list-style: none;
-    position: relative;
     display: flex;
-    flex-direction: column;
-}
-.texto{
-    position: absolute;
-    text-align: center;
-    padding: 0 250px;
-    top: 250%;
-}
-.texto h2{
-    font-size: 40px;
-    margin-bottom: 35px;
+    flex-direction: column; /* CORRECCIÓN IMPORTANTE: Coloca imagen y texto en columna */
+    align-items: center; /* Centra el contenido horizontalmente */
 }
 .slider-box img{
     width: 100%;
+    display: block;
+}
+.texto{
+    /* CORRECCIÓN FINAL: Eliminamos posicionamiento absoluto y top */
+    /* position: absolute; */
+    /* top: 250%; */
+    text-align: center;
+    padding: 20px; /* Un padding razonable */
+    width: 100%; /* Ocupa todo el ancho de la imagen */
+    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente opcional para legibilidad */
+}
+.texto h2{
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: rgb(253, 217, 0); /* Amarillas para el estilo */
+    text-shadow: 2px 2px 5px black;
+}
+.texto p {
+    text-shadow: 1px 1px 3px black;
+    line-height: 1.6; /* Un mejor interlineado para lectura */
 }
 @keyframes slider{
     0%{margin-left: 0;}
@@ -122,18 +134,15 @@ nav a:hover{
 }
 @media(max-width: 1280px){
     body{
-        padding: 30px;
+        padding: 0; /* Ajuste para evitar bordes blancos */
     }
     .slider-box{
         width: 100%;
-    }
-    .texto{
-        top: 500px;
-        padding: 0;
+        border-radius: 0;
     }
     .texto h2{
-        font-size: 35px;
-        margin-bottom: 15px;
+        font-size: 25px;
+        margin-bottom: 10px;
     }
     .texto p{
         font-size: 14px;
