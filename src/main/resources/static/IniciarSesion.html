@@ -17,19 +17,26 @@
 </div><br><br>
 <div class="formulario">
     <br>
-    <!--correo-->
-    <label>Correo electrónico:</label><br><br>
-    <input type="email" name="email" placeholder="ejemplo@correo.com">
-    <br><br>
-    <!-- Contraseña -->
-    <label>Contraseña:</label><br><br>
-    <input type="password" name="password" placeholder="Escribe tu contraseña">
-    <br><br>
 
-    <a href="paginaPrincipal.html">Iniciar sesión</a>
+    <form action="/loginUsuario" method="POST">
+        <label>Correo electrónico:</label><br><br>
+        <input type="email" name="correo" placeholder="ejemplo@correo.com" required>
+        <br><br>
+
+        <label>Contraseña:</label><br><br>
+        <input type="password" name="password" placeholder="Escribe tu contraseña" required>
+        <br><br>
+
+        <p id="mensajeError" style="color: #ff4444; display: none; font-size: 14px; text-align: center; font-weight: bold;">
+            ❌ Correo o contraseña incorrectos.
+        </p>
+
+        <button type="submit" style="padding: 10px 20px; cursor: pointer; border-radius: 5px;">Iniciar sesión</button>
+    </form>
+
     <br>
-    <hr><p>registrate si aun no tienes cuenta</p><hr><br>
-    <a href="Registro.html">Registrate</a>
+    <hr><p>Regístrate si aún no tienes cuenta</p><hr><br>
+    <a href="Registro.html">Regístrate</a>
 </div>
 <section class="super">
     <section>
@@ -49,5 +56,12 @@
         </div>
     </section>
 </section>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('error')) {
+        document.getElementById('mensajeError').style.display = 'block';
+    }
+</script>
 </body>
 </html>
