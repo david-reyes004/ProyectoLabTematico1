@@ -9,17 +9,29 @@
 <header>
     <nav class="encabezado">
         <button class="boton-img"><img src="imagenes/Logo.jpeg" alt="inicio"></button>
-        <a href="paginaPrincipal.html">INICIO</a>
+        <a href="PaginaPrincipal.html">INICIO</a>
         <a href="">EVENTOS</a>
         <a href="">MIS EVENTOS</a>
         <a href="">ACERCA DE</a>
-        <a href="iniciarSesion.html">CERRAR SESION</a>
+        <a href="IniciarSesion.html">CERRAR SESION</a>
     </nav>
 </header>
 <main>
     <div class="letrero">
         <h1>Eventos</h1>
+        <h2 id="saludo" style="text-align: center; margin-top: 20px; color: white; font-family: 'Poppins', sans-serif;">¡Hola, bienvenido!</h2>
     </div>
 </main>
+<script>
+    const nombreGuardado = localStorage.getItem('usuarioDataFestival');
+
+    if (nombreGuardado) {
+        document.getElementById('saludo').innerText = '¡Hola, ' + nombreGuardado + '!';
+    }
+
+    function cerrarSesion() {
+        localStorage.removeItem('usuarioDataFestival');
+    }
+</script>
 </body>
 </html>

@@ -17,20 +17,22 @@
 </div><br><br>
 <div class="formulario">
     <br>
-    <!--Usuario-->
-    <label>Nombre de usuario</label><br><br>
-    <input type="text" name="nombre">
-    <br><br>
-    <!--correo-->
-    <label>Correo electrónico:</label><br><br>
-    <input type="email" name="email" placeholder="ejemplo@correo.com">
-    <br><br>
-    <!-- Contraseña -->
-    <label>Contraseña:</label><br><br>
-    <input type="password" name="password" placeholder="Escribe tu contraseña"><br><br>
-    <a href="Registro.html">Registrate</a>
+    <form action="/guardarUsuario" method="POST">
+
+        <label>Nombre de usuario</label><br><br>
+        <input type="text" name="nombre">
+        <br><br>
+
+        <label>Correo electrónico:</label><br><br>
+        <input type="email" name="correo" placeholder="ejemplo@correo.com">
+        <br><br>
+
+        <label>Contraseña:</label><br><br>
+        <input type="password" name="password" placeholder="Escribe tu contraseña"><br><br>
+
+        <button type="submit">Regístrate</button>
+    </form>
 </div>
-<section class="super">
     <section>
         <div class="particulas">
             <span class="particula"></span>
