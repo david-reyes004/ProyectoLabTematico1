@@ -15,22 +15,24 @@
     </h2>
     <p>Inicia sesion para continuar</p>
 </div><br><br>
-<div class="formulario">
+<form id="formInicio" class="formulario">
     <br>
     <!--correo-->
     <label>Correo electrónico:</label><br><br>
-    <input type="email" name="email" placeholder="ejemplo@correo.com">
+    <input type="email" id="correo" name="email" placeholder="ejemplo@correo.com" required>
     <br><br>
     <!-- Contraseña -->
     <label>Contraseña:</label><br><br>
-    <input type="password" name="password" placeholder="Escribe tu contraseña">
+    <input type="password" id="password" name="password" placeholder="Escribe tu contraseña" required>
     <br><br>
 
-    <a href="paginaPrincipal.html">Iniciar sesión</a>
+    <button class="crearCuenta" type="submit">Crear Cuenta</button>
     <br>
     <hr><p>registrate si aun no tienes cuenta</p><hr><br>
-    <a href="Registro.html">Registrate</a>
-</div>
+    <!-- Crear cuenta -->
+    <button class="crearCuenta" type="submit">Crear Cuenta</button>
+    <p id="mensaje"></p>
+</form>
 <section class="super">
     <section>
         <div class="particulas">
@@ -49,5 +51,6 @@
         </div>
     </section>
 </section>
+<script src="js/InicioSesion.js"></script>
 </body>
 </html>
