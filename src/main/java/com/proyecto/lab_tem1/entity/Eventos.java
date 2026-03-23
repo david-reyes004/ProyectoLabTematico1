@@ -10,6 +10,7 @@ public class Eventos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long id;
+    private String nombre;
     private int fecha;
     private int hora_iniciol;
 
@@ -20,6 +21,10 @@ public class Eventos {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getNobre() {return nombre;}
+
+    public void setNobre(String nombre) {this.nombre = nombre;}
 
     public int getFecha() {
         return fecha;
