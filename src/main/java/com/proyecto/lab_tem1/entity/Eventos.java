@@ -12,7 +12,7 @@ public class Eventos {
     private long id;
     private String nombre;
     private int fecha;
-    private int hora_iniciol;
+    private int hora_inicio;
 
     public long getId() {
         return id;
@@ -34,11 +34,11 @@ public class Eventos {
         this.fecha = fecha;
     }
 
-    public int getHora_iniciol() {
-        return hora_iniciol;
+    public int getHora_inicio() {
+        return hora_inicio;
     }
 
-    public void setHora_iniciol(int hora_iniciol) {
-        this.hora_iniciol = hora_iniciol;
+    public void setHora_inicio(int hora_inicio) {
+        this.hora_inicio = hora_inicio;
     }
 }
