@@ -1,10 +1,10 @@
 create database proyectoLabTem1;
 
-#create table Boleto();
-
 describe usuarios;
 
 describe artistas;
+
+describe escenarios;
 
 SELECT * from usuarios;
 
@@ -13,6 +13,8 @@ SELECT *from eventos;
 SELECT * FROM usuarios WHERE id ='5';
 
 SELECT *FROM artistas;
+
+SELECT *from escenarios;
 
 SELECT * from boletos;
 
@@ -31,6 +33,9 @@ VALUES ('RAP','Ice cube');
 
 INSERT INTO boletos (compra, precio, eventos_id_eventos, usuarios_id_usuarios, nombre)
 VALUES ('UN boleto', 1500, 1, 1, 'luis');
+
+INSERT INTO escenarios(nombre)
+VALUES ('Escenario Principal')
 
 
 
