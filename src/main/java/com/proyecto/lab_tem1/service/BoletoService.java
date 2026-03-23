@@ -1,5 +1,6 @@
 package com.proyecto.lab_tem1.service;
 
+import com.proyecto.lab_tem1.dto.BoletoDTO;
 import com.proyecto.lab_tem1.entity.Boleto;
 import com.proyecto.lab_tem1.repository.BoletoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,15 @@ public class BoletoService {
         return boletoRepository.findAll();
     }
 
-    public Boleto guardar(Boleto boleto) {
-        return boletoRepository.save(boleto);
+    public BoletoDTO guardar(Boleto boleto) {
+        boletoRepository.save(boleto);
+
+        BoletoDTO boletoDTO = new BoletoDTO();
+        boletoDTO.setId(boleto.getId());
+        boletoDTO.setNombre(boleto.getNombre());
+        boletoDTO.setPrecio(boleto.getPrecio());
+        boletoDTO.setCompra(boleto.getCompra());
+
+        return boletoDTO;
     }
 }

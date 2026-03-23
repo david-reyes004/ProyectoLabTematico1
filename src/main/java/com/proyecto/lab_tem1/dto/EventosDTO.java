@@ -1,17 +1,23 @@
 package com.proyecto.lab_tem1.dto;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class EventosDTO {
-    private long id; // Deja solo esta
-    // BORRA la línea que decía: private int id;
-    private int fecha;
-    private int hora_inicio;
+    private long id;
+    private String nombre;
+    private Date fecha;
+    private Time hora_inicio;
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 
-    public int getFecha() { return fecha; }
-    public void setFecha(int fecha) { this.fecha = fecha; }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public int getHora_inicio() { return hora_inicio; }
-    public void setHora_inicio(int hora_inicio) { this.hora_inicio = hora_inicio; }
+    public Date getFecha() { return fecha; }
+    public void setFecha(Date fecha) { this.fecha = fecha; }
+
+    public Time getHora_inicio() { return hora_inicio; }
+    public void setHora_inicio(Time hora_inicio) { this.hora_inicio = hora_inicio; }
 }

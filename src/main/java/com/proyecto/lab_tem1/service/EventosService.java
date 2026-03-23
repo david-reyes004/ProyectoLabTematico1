@@ -27,6 +27,7 @@ public class EventosService {
             EventosDTO eventosDTO = new EventosDTO();
 
             eventosDTO.setId(e.getId());
+            eventosDTO.setNombre(e.getNombre());
             eventosDTO.setFecha(e.getFecha());
             eventosDTO.setHora_inicio(e.getHora_inicio());
 
@@ -38,6 +39,7 @@ public class EventosService {
     public EventosDTO save(EventosDTO eventosDTO){
         Eventos eventosEntity = new Eventos();
         eventosEntity.setId(eventosDTO.getId());
+        eventosEntity.setNombre(eventosDTO.getNombre());
         eventosEntity.setFecha(eventosDTO.getFecha());
         eventosEntity.setHora_inicio(eventosDTO.getHora_inicio());
 
@@ -52,6 +54,7 @@ public class EventosService {
         EventosDTO eventosDTO = new EventosDTO();
 
         eventosDTO.setId(eventos.getId());
+        eventosDTO.setNombre(eventos.getNombre());
         eventosDTO.setFecha(eventos.getFecha());
         eventosDTO.setHora_inicio(eventos.getHora_inicio());
 

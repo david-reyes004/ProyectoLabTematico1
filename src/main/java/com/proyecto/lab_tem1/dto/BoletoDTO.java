@@ -2,6 +2,7 @@ package com.proyecto.lab_tem1.dto;
 
 public class BoletoDTO {
     private long id;
+    private String nombre;
     private double precio;
     private String compra;
     private long eventoId;
@@ -46,4 +47,9 @@ public class BoletoDTO {
     public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
     }
+
+    public String getNombre() {return nombre;}
+
+    public void setNombre(String nombre) {this.nombre = nombre;}
+
 }
