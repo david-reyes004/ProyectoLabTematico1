@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Eventos</title>
+</head>
+<body>
+
+<h1>Mis Eventos</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Evento</th>
+    </tr>
+    </thead>
+    <tbody id="tablaMisEventos"></tbody>
+</table>
+
+<script>
+    let eventos = JSON.parse(localStorage.getItem('misEventos')) || [];
+    let tabla = document.getElementById("tablaMisEventos");
+
+    eventos.forEach(e => {
+        let fila = `<tr><td>${e}</td></tr>`;
+        tabla.innerHTML += fila;
+    });
+</script>
+
+</body>
+</html>
