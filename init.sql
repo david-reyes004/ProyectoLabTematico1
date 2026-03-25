@@ -20,13 +20,17 @@ SELECT * from boletos;
 
 DELETE FROM usuarios WHERE id = '2';
 
+DELETE FROM boletos WHERE id_boletos =1;
+
+DELETE FROM eventos WHERE id = 5;
+
 insert into usuarios (nombre, correo, password)
 values ( 'Raul', 'raul@gmail.com', '8769');
 
 ALTER TABLE eventos DROP COLUMN hora_iniciol;
 
 INSERT INTO eventos (nombre, fecha, hora_inicio)
-VALUES ('EDC', '2026-04-20', '13:00:00');
+VALUES ('TOMORROWLAND', '2027-05-20', '18:00:00');
 
 INSERT INTO artistas (genero, nombre_artistico)
 VALUES ('RAP','Ice cube');

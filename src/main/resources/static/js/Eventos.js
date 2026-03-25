@@ -14,8 +14,8 @@ async function cargarEventos() {
                 <div class="evento-card">
                     <h3>Evento #${evento.id}</h3>
                     <p>Nombre: ${evento.nombre}</p>
-                    <p>Fecha: ${evento.fecha}</p>
-                    <h3>Hora: ${evento.horaInicio}hrs</h3>
+                    <p>Fecha: ${new Date(evento.fecha).toLocaleDateString('es-MX')}</p>
+                    <h3>Hora: ${evento.horaInicio} hrs</h3>
                     <button class="btn-comprar">VER BOLETOS</button>
                 </div>
             `;

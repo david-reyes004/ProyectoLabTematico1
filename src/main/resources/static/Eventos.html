@@ -12,7 +12,7 @@
         <button class="boton-img"><img src="imagenes/Logo.jpeg" alt="inicio"></button>
         <a href="paginaPrincipal.html">INICIO</a>
         <a href="">EVENTOS</a>
-        <a href="">MIS EVENTOS</a>
+        <a href="miseventos.html">MIS EVENTOS</a>
         <a href="">ACERCA DE</a>
         <a href="iniciarSesion.html">CERRAR SESION</a>
     </nav>
@@ -26,7 +26,45 @@
     class="eventos-grid">
         <p>Cargando Cartelera...</p>
     </div>
+    <div class="tabla-eventos">
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Evento</th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Concierto</td>
+                <td><button onclick="likeEvento('Concierto')">Me gusta</button></td>
+            </tr>
+            <tr>
+                <td>Feria</td>
+                <td><button onclick="likeEvento('Feria')">Me gusta</button></td>
+            </tr>
+            <tr>
+                <td>Festival</td>
+                <td><button onclick="likeEvento('Festival')">Me gusta</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </main>
-<script src="js/Eventos.js"></script>
+
+<script>
+    function likeEvento(evento) {
+        let eventos = JSON.parse(localStorage.getItem('misEventos')) || [];
+
+        if (!eventos.includes(evento)) {
+            eventos.push(evento);
+            localStorage.setItem('misEventos', JSON.stringify(eventos));
+            alert("Agregado a Mis Eventos");
+        } else {
+            alert("Ya lo habías agregado");
+        }
+    }
+</script>
+
 </body>
 </html>
