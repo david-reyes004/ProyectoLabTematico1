@@ -1,4 +1,4 @@
-package com.proyecto.lab_tem1.entity;
+package com.proyecto.lab_tem1.entity; /*Quedó igual*/
 
 import jakarta.persistence.*;
 

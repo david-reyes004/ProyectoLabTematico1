@@ -1,4 +1,4 @@
-package com.proyecto.lab_tem1.dto;
+package com.proyecto.lab_tem1.dto; /*Quedó igual*/
 
 public class BoletoDTO {
     private long id;

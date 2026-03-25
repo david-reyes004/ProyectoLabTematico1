@@ -37,6 +37,7 @@ hr{
     0 0 20px #000000;
 }
 
+
 a{
     display: inline-block;
     text-decoration: none;
@@ -45,6 +46,20 @@ a{
     border-radius: 8px;
     background-color: rgb(253, 217, 0);
     box-shadow: 0 0 12px rgba(255, 232, 66, 0.81);
+    border: none;
+    cursor: pointer;
+
+}
+button.crearCuenta{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background-color: rgb(253, 217, 0);
+    box-shadow: 0 0 12px rgba(255, 232, 66, 0.81);
+    border: none;
+    cursor: pointer;
 }
 .particulas{
     pointer-events: none;

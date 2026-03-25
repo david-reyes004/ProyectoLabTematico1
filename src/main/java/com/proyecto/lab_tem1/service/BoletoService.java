@@ -1,4 +1,4 @@
-package com.proyecto.lab_tem1.service;
+package com.proyecto.lab_tem1.service; /*Quedó igual*/
 
 import com.proyecto.lab_tem1.entity.Boleto;
 import com.proyecto.lab_tem1.repository.BoletoRepository;

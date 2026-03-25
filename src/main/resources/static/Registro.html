@@ -15,21 +15,24 @@
     </h2>
     <p>Crea tu cuenta para continuar</p>
 </div><br><br>
-<div class="formulario">
+<form id="formRegistro" class="formulario">
     <br>
     <!--Usuario-->
     <label>Nombre de usuario</label><br><br>
-    <input type="text" name="nombre">
+    <input type="text" id="nombre" placeholder="Nombre de Usuario" required>
     <br><br>
     <!--correo-->
     <label>Correo electrónico:</label><br><br>
-    <input type="email" name="email" placeholder="ejemplo@correo.com">
+    <!--correo -->
+    <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
     <br><br>
     <!-- Contraseña -->
     <label>Contraseña:</label><br><br>
-    <input type="password" name="password" placeholder="Escribe tu contraseña"><br><br>
-    <a href="Registro.html">Registrate</a>
-</div>
+    <input type="password" id="password" placeholder="Escribe tu contraseña" required><br><br>
+    <!-- Crear cuenta -->
+    <button class="crearCuenta" type="submit">Crear Cuenta</button>
+    <p id="mensaje"></p>
+</form>
 <section class="super">
     <section>
         <div class="particulas">
@@ -48,5 +51,6 @@
         </div>
     </section>
 </section>
+<script src="js/Registro.js"></script>
 </body>
 </html>
