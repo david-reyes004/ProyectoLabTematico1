@@ -144,3 +144,21 @@ nav a:hover{
         font-size: 14px;
     }
 }
+
+div.Text_MisEventos{
+    text-align: center;
+    font-size: 20px;
+    color:rgb(253, 217, 0) ;
+    text-shadow: 0 0 12px rgba(255, 226, 0, 0.81);
+    display: flex;
+    margin-top: 5px;
+    padding: 2%;
+    border: 1px solid rgb(253, 217, 0);
+    box-shadow: 0 0 12px rgba(255, 226, 0, 0.81);
+}
+.tabla_eventos{
+    color: #ffffff;
+    border-radius: 15px;
+    border: 1px solid rgb(253, 217, 0);
+    box-shadow: 0 0 12px rgba(255, 226, 0, 0.81);
+}

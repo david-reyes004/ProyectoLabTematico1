@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/Principal.css">
     <meta charset="UTF-8">
     <title>Mis Eventos</title>
 </head>
 <body>
-
-<h1>Mis Eventos</h1>
-
-<table border="1">
-    <thead>
-    <tr>
-        <th>Evento</th>
-    </tr>
-    </thead>
-    <tbody id="tablaMisEventos"></tbody>
-</table>
-
-<script>
-    let eventos = JSON.parse(localStorage.getItem('misEventos')) || [];
-    let tabla = document.getElementById("tablaMisEventos");
-
-    eventos.forEach(e => {
-        let fila = `<tr><td>${e}</td></tr>`;
-        tabla.innerHTML += fila;
-    });
-</script>
+<header>
+    <nav class="encabezado">
+        <button class="boton-img"><img src="imagenes/Logo.jpeg" alt="inicio"></button>
+        <a href="paginaPrincipal.html">INICIO</a>
+        <a href="Eventos.html">EVENTOS</a>
+        <a href="">MIS EVENTOS</a>
+        <a href="iniciarSesion.html">CERRAR SESION</a>
+    </nav>
+</header>
+<main>
+    <div class="Text_MisEventos">
+        <h1>Mis Eventos</h1>
+    </div>
+    <table class="tabla_eventos">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+        </tr>
+        </thead>
+        <tbody id="tablaMisEventos"></tbody>
+    </table>
+</main>
+<script src="js/AccionesEventos.js"></script>
 
 </body>
 </html>

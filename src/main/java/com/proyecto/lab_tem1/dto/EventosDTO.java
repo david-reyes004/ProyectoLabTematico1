@@ -2,6 +2,8 @@ package com.proyecto.lab_tem1.dto;
 
 import java.sql.Time;
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class EventosDTO {
     private long id;

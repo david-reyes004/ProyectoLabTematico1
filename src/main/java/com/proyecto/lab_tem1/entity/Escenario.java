@@ -8,16 +8,9 @@ public class Escenario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_escenarios")
     private Long id;
-
-    @Column(name = "capacidad")
     private String capacidad;
-
-    @Column(name = "ubicacion")
     private String ubicacion;
-
-    @Column(name = "eventos_id_eventos")
     private Long eventosIdEventos;
 
     public Escenario() {}

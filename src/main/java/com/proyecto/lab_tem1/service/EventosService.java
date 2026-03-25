@@ -22,14 +22,13 @@ public class EventosService {
         List<EventosDTO> lista = new ArrayList<>();
         List<Eventos> eventos = eventosRepository.findAll();
 
-        // Cambié 'eventos: Eventos' por 'e : eventos' para evitar conflicto de nombres
         for (Eventos e : eventos){
             EventosDTO eventosDTO = new EventosDTO();
 
             eventosDTO.setId(e.getId());
             eventosDTO.setNombre(e.getNombre());
+            eventosDTO.setFecha(e.getFecha());
             eventosDTO.setHoraInicio(e.getHoraInicio());
-            eventosDTO.setHoraInicio(eventosDTO.getHoraInicio());
 
             lista.add(eventosDTO);
         }
