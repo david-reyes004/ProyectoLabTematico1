@@ -4,14 +4,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import java.sql.Time;
+import java.util.Date;
+
 @Entity(name = "eventos")
 public class Eventos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long id;
-    private int fecha;
-    private int hora_iniciol;
+    private String nombre;
+    private Date fecha;
+    private Time horaInicio;
 
     public long getId() {
         return id;
@@ -21,19 +28,19 @@ public class Eventos {
         this.id = id;
     }
 
-    public int getFecha() {
+    public String getNombre() {return nombre;}
+
+    public void setNombre(String nombre) {this.nombre = nombre;}
+
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(int fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public int getHora_iniciol() {
-        return hora_iniciol;
-    }
+    public Time getHoraInicio() { return horaInicio; }
 
-    public void setHora_iniciol(int hora_iniciol) {
-        this.hora_iniciol = hora_iniciol;
-    }
+    public void setHoraInicio(Time horaInicio) { this.horaInicio = horaInicio;}
 }

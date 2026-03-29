@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/Eventos.css">
+    <link rel="stylesheet" href="css/ORGeventos.css">
     <title>Eventos</title>
 </head>
 <body>
@@ -11,15 +12,21 @@
         <button class="boton-img"><img src="imagenes/Logo.jpeg" alt="inicio"></button>
         <a href="paginaPrincipal.html">INICIO</a>
         <a href="">EVENTOS</a>
-        <a href="">MIS EVENTOS</a>
-        <a href="">ACERCA DE</a>
+        <a href="miseventos.html">MIS EVENTOS</a>
         <a href="iniciarSesion.html">CERRAR SESION</a>
     </nav>
 </header>
 <main>
     <div class="letrero">
-        <h1>Eventos</h1>
+        <h1>Cartelera de Eventos</h1>
+    </div>
+
+    <div id="ContenedorDeEventos"
+    class="eventos-grid">
+        <p>Cargando Cartelera...</p>
     </div>
 </main>
 </body>
+<script src="js/Eventos.js"></script>
+<script src="js/AccionesEventos.js"></script>
 </html>

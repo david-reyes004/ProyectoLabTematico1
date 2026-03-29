@@ -16,10 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Status:', response.status);
             console.log('Respuesta:', await response.text());
             if (response.ok) {
+                localStorage.setItem('usuarioActual', document.getElementById('correo').value);
                 document.getElementById('mensaje').textContent = '✓ Inicio de Sesion exitoso';
                 document.getElementById('formInicio').reset();
-                window.location.href='/paginaPrincipal.html';
-            }else{
+                window.location.href = '/paginaPrincipal.html';
+            } else {
                 document.getElementById('mensaje').textContent = 'Error al Iniciar sesion';
             }
         }catch(err){
@@ -28,3 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
 })
+
+function cerrarSesion() {
+    localStorage.removeItem('usuarioActual');
+    window.location.href = '/iniciarSesion.html';
+}
