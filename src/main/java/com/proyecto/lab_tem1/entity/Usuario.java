@@ -10,6 +10,7 @@ public class Usuario {
     private long id;
     private String nombre;
     private String correo;
+    private String password; // <-- Ahora está aquí, donde debe estar.
 
     public long getId() {
         return id;
@@ -42,7 +43,4 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    private String password;
-
 }

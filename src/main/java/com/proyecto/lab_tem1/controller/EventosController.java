@@ -8,6 +8,7 @@ import com.proyecto.lab_tem1.dto.EventosDTO;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 
 public class EventosController {
 
