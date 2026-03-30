@@ -12,6 +12,15 @@ public class Boleto {
     private double precio;
     private String compra;
 
+    @ManyToOne
+    @JoinColumn(name = "id_presentacion")
+    private Presentacion presentacion;
+
+    public Presentacion getPresentacion() {
+        return presentacion;
+    }
+    public void setPresentacion(Presentacion presentacion){ this.presentacion = presentacion; }
+
     public long getId() {
         return id;
     }

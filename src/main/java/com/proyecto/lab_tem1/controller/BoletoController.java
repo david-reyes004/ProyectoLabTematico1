@@ -21,11 +21,11 @@ public class BoletoController {
 
     @PostMapping("/boletos")
     public BoletoDTO save(@RequestBody BoletoDTO boletoDTO) {
-        Boleto boleto = new Boleto();
-        boleto.setNombre(boletoDTO.getNombre());
-        boleto.setPrecio(boletoDTO.getPrecio());
-        boleto.setCompra(boletoDTO.getCompra());
-        return boletoService.guardar(boleto);
+        //Boleto boleto = new Boleto();
+        //boleto.setNombre(boletoDTO.getNombre());
+        //boleto.setPrecio(boletoDTO.getPrecio());
+        //boleto.setCompra(boletoDTO.getCompra());
+        return boletoService.guardar(boletoDTO);
     }
 
 }
