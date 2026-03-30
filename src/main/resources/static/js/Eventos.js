@@ -114,10 +114,10 @@ async function abrirModal(eventoId, nombreEvento) {
             contenedor.innerHTML += `
                 <div class="presentacion-card">
                     <div>
-                        <h3 style="margin:0; color:#00d2ff;">🎤 ${p.artista.nombre_artistico}</h3>
+                        <h3 style="margin:0; color:#00d2ff;"> ${p.artista.nombre_artistico}</h3>
                         <p style="margin:5px 0;">Género: ${p.artista.genero}</p>
-                        <p style="margin:5px 0;">🏟️ Escenario: ${p.escenario.nombre} - ${p.escenario.ubicacion}</p>
-                        <p style="margin:0; color:#ccc;">🕐 Horario: ${p.hora_presentacion}</p>
+                        <p style="margin:5px 0;"> Escenario: ${p.escenario.nombre} - ${p.escenario.ubicacion}</p>
+                        <p style="margin:0; color:#ccc;"> Horario: ${p.hora_presentacion}</p>
                     </div>
                     <button class="btn-presentacion" onclick="guardarPresentacion(${p.id}, '${p.artista.nombre_artistico}', '${nombreEvento}', '${p.hora_presentacion}')">
                         AGREGAR A MI LISTA
