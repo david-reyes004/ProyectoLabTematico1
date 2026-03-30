@@ -1,54 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <link rel="stylesheet" href="css/Principal.css">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Eventos</title>
+    <link rel="stylesheet" href="css/Eventos.css">
+    <link rel="stylesheet" href="css/Principal.css">
+    <link rel="stylesheet" href="css/ORGeventos.css">
 </head>
 <body>
+
 <header>
     <nav class="encabezado">
         <button class="boton-img"><img src="imagenes/Logo.jpeg" alt="inicio"></button>
         <a href="paginaPrincipal.html">INICIO</a>
         <a href="Eventos.html">EVENTOS</a>
-        <a href="">MIS EVENTOS</a>
-        <a href="iniciarSesion.html">CERRAR SESION</a>
+        <a href="miseventos.html">MIS EVENTOS</a>
+        <a href="#" onclick="cerrarSesion(); return false;">CERRAR SESION</a>
     </nav>
 </header>
-<main>
-    <div class="Text_MisEventos">
-        <h1>Mis Eventos</h1>
-    </div>
 
-    <table class="tabla_eventos">
+<main>
+    <!-- Mis Eventos guardados -->
+    <div class="Text_MisEventos">
+        <h1 id="tituloBienvenida">Mis Eventos</h1>
+    </div>
+    <table class="tabla_eventos" style="width:90%; margin: 20px auto;">
         <thead>
         <tr>
             <th>ID</th>
             <th>Nombre</th>
             <th>Fecha</th>
             <th>Hora</th>
-        </tr>
             <th>Acción</th>
         </tr>
         </thead>
         <tbody id="tablaMisEventos"></tbody>
     </table>
-            <th>Acción</th>
-        </tr>
-            <th>Acción</th>
-        </tr>
-        </thead>
-        <tbody id="tablaMisEventos"></tbody>
-    </table>
+
+    <!-- Mi Itinerario -->
     <div class="Text_MisEventos" style="margin-top: 40px;">
         <h1>Mi Itinerario (Presentaciones)</h1>
     </div>
-    <table class="tabla_eventos">
+    <table class="tabla_eventos" style="width:90%; margin: 20px auto;">
         <thead>
         <tr>
             <th>ID</th>
             <th>Festival</th>
-            <th>Artista ID</th>
+            <th>Artista</th>
             <th>Hora</th>
             <th>Acción</th>
         </tr>
@@ -60,10 +59,10 @@
     <div class="Text_MisEventos" style="margin-top: 40px;">
         <h1>Mis Boletos Comprados (Oficial)</h1>
     </div>
-    <div id="contenedor-mis-boletos"></div> <!-- 👈 solo este contenedor -->
+    <div id="contenedor-mis-boletos" style="padding: 20px;"></div>
 
 </main>
-<script src="js/AccionesEventos.js"></script>
 
+<script src="js/AccionesEventos.js"></script>
 </body>
 </html>

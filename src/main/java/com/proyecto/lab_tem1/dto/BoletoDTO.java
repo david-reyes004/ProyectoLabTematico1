@@ -8,48 +8,21 @@ public class BoletoDTO {
     private long eventoId;
     private long usuarioId;
 
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public double getPrecio() {
-        return precio;
-    }
+    public double getPrecio() { return precio; }
+    public void setPrecio(double precio) { this.precio = precio; }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
+    public String getCompra() { return compra; }
+    public void setCompra(String compra) { this.compra = compra; }
 
-    public String getCompra() {
-        return compra;
-    }
+    public long getEventoId() { return eventoId; }
+    public void setEventoId(long eventoId) { this.eventoId = eventoId; }
 
-    public void setCompra(String compra) {
-        this.compra = compra;
-    }
-
-    public long getEventoId() {
-        return eventoId;
-    }
-
-    public void setEventoId(long eventoId) {
-        this.eventoId = eventoId;
-    }
-
-    public long getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(long usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
-    public String getNombre() {return nombre;}
-
-    public void setNombre(String nombre) {this.nombre = nombre;}
-
+    public long getUsuarioId() { return usuarioId; }
+    public void setUsuarioId(long usuarioId) { this.usuarioId = usuarioId; }
 }

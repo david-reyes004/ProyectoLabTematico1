@@ -15,28 +15,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             console.log('Status:', response.status);
-
             const texto = await response.text();
             console.log('Respuesta raw:', texto);
-            console.log('response.ok:', response.ok);
-            console.log('response.status:', response.status);
-
             const usuario = JSON.parse(texto);
-
-            console.log('Antes de guardar - usuarioId:', usuario.id);
-            localStorage.setItem('usuarioId', String(usuario.id));
-            console.log('Después de guardar:', localStorage.getItem('usuarioId'));
-
+            console.log('usuario parseado:', usuario);
 
             if (response.ok) {
                 localStorage.setItem('usuarioActual', usuario.correo);
                 localStorage.setItem('usuarioId', String(usuario.id));
-
-                console.log('usuarioId guardado:', localStorage.getItem('usuarioId'));
-
                 document.getElementById('mensaje').textContent = '✓ Inicio de Sesion exitoso';
                 document.getElementById('formInicio').reset();
-
                 setTimeout(() => {
                     window.location.href = '/paginaPrincipal.html';
                 }, 100);
@@ -45,12 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch(err) {
             document.getElementById('mensaje').textContent = 'No se pudo iniciar Sesion';
-            console.error('Error completo:', err); // 👈 ver el error completo
+            console.error('Error completo:', err);
         }
     })
 })
 
 function cerrarSesion() {
     localStorage.removeItem('usuarioActual');
+    localStorage.removeItem('usuarioId');
     window.location.href = '/iniciarSesion.html';
 }

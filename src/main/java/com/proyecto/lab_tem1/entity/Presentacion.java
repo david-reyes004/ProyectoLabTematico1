@@ -29,44 +29,18 @@ public class Presentacion {
     @JsonIgnoreProperties({"presentaciones", "hibernateLazyInitializer"})
     private Escenario escenario;
 
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
-    public long getId() {
-        return id;
-    }
+    public String getHora_presentacion() { return hora_presentacion; }
+    public void setHora_presentacion(String hora_presentacion) { this.hora_presentacion = hora_presentacion; }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public Artista getArtista() { return artista; }
+    public void setArtista(Artista artista) { this.artista = artista; }
 
-    public String getHora_presentacion() {
-        return hora_presentacion;
-    }
+    public Eventos getEvento() { return evento; }
+    public void setEvento(Eventos evento) { this.evento = evento; }
 
-    public void setHora_presentacion(String hora_presentacion) {
-        this.hora_presentacion = hora_presentacion;
-    }
-
-    public Artista getArtista() {
-        return artista;
-    }
-
-    public void setArtista(Artista artista) {
-        this.artista = artista;
-    }
-
-    public Eventos getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Eventos evento) {
-        this.evento = evento;
-    }
-
-    public Escenario getEscenario() {
-        return escenario;
-    }
-
-    public void setEscenario(Escenario escenario) {
-        this.escenario = escenario;
-    }
+    public Escenario getEscenario() { return escenario; }
+    public void setEscenario(Escenario escenario) { this.escenario = escenario; }
 }

@@ -2,7 +2,7 @@ package com.proyecto.lab_tem1.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import com.proyecto.lab_tem1.entity.Eventos;
+
 @Entity
 @Table(name = "boletos")
 public class Boleto {
@@ -26,7 +26,6 @@ public class Boleto {
     @JsonIgnoreProperties({"boletos", "password", "hibernateLazyInitializer"})
     private Usuario usuario;
 
-    // --- Getters y Setters existentes ---
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 

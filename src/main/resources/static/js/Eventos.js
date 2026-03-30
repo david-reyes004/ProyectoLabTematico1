@@ -13,10 +13,10 @@ async function cargarEventos() {
         contenedor.innerHTML = '';
         eventos.forEach(evento => {
             contenedor.innerHTML += `
-                <div class="evento-card">
+                <div class="evento-card" style="cursor: pointer;" onclick="abrirModal(${evento.id}, '${evento.nombre}')">
                     <h3>#${evento.id}</h3>
                     <hr class="linea">
-                    <p>${evento.nombre}</p>
+                    <p><strong>${evento.nombre}</strong></p>
                     <hr class="linea">
                     <p>Fecha: ${new Date(evento.fecha).toLocaleDateString('es-MX')}</p>
                     <p>Hora: ${evento.horaInicio} hrs</p>
@@ -25,7 +25,6 @@ async function cargarEventos() {
                         <button class="btn-guardar" onclick="event.stopPropagation(); guardarEvento(${evento.id}, '${evento.nombre}', '${evento.fecha}', '${evento.horaInicio}')">⭐ GUARDAR</button>
                         <button class="btn-comprar-real" onclick="event.stopPropagation(); comprarBoleto(${evento.id}, '${evento.nombre}', ${evento.precio || 1500})">🎫 COMPRAR</button>
                     </div>
-                    <button class="btn-comprar" onclick="guardarEvento(${evento.id}, '${evento.nombre}', '${evento.fecha}', '${evento.horaInicio}')">GUARDAR BOLETOS</button>
                 </div>
             `;
         });
@@ -74,21 +73,7 @@ async function comprarBoleto(eventoId, nombreEvento, precio) {
 
         if (respuesta.ok) {
             const resultado = await respuesta.json();
-
-            const boleto = {
-                id: resultado.id,
-                nombre: nombreEvento,
-                cantidad: cantidad,
-                precio: precioTotal,
-                usuario: usuarioEmail,
-                fecha: new Date().toLocaleDateString('es-MX', {
-                    year: 'numeric', month: 'long', day: 'numeric'
-                })
-            };
-
-            mostrarBoleto(boleto);
             alert(`¡Compra exitosa! 🎉 Tu boleto tiene el ID: ${resultado.id}`);
-
         } else {
             const errorText = await respuesta.text();
             console.error('Error del servidor:', errorText);
@@ -100,43 +85,8 @@ async function comprarBoleto(eventoId, nombreEvento, precio) {
     }
 }
 
-function mostrarBoleto(boleto) {
-    const contenedor = document.getElementById('contenedor-boletos');
-    if (!contenedor) return;
-
-    if (!contenedor) {
-        console.error('No existe el div contenedor-boletos en el HTML');
-        return;
-    }
-
-    const tarjeta = document.createElement('div');
-    tarjeta.classList.add('boleto-card');
-    tarjeta.innerHTML = `
-        <div id="contenedor-boletos">
-            <div class="boleto-izquierda">
-                <span class="boleto-tag">🎫 BOLETO OFICIAL</span>
-                <h2 class="boleto-evento">${boleto.nombre}</h2>
-                <p class="boleto-usuario"> ${boleto.usuario}</p>
-                <p class="boleto-fecha">📅 ${boleto.fecha}</p>
-            </div>
-            <div class="boleto-separador"></div>
-            <div class="boleto-derecha">
-                <p>ID: <strong>#${boleto.id}</strong></p>
-                <p>Cantidad: <strong>${boleto.cantidad}</strong></p>
-                <p>Total: <strong>$${boleto.precio}</strong></p>
-                <span class="boleto-estado">✅ Confirmado</span>
-            </div>
-        </div>
-    `;
-
-    contenedor.appendChild(tarjeta);
-    tarjeta.scrollIntoView({ behavior: 'smooth' });
-}
-
-// --- RESTO DE TUS FUNCIONES (Abajo se quedan igual) ---
-
 async function abrirModal(eventoId, nombreEvento) {
-    document.getElementById('modalPresentaciones').style.display = 'block';
+    document.getElementById('modalPresentaciones').style.display = 'flex';
     document.getElementById('tituloModal').innerText = `Presentaciones de: ${nombreEvento}`;
     const contenedor = document.getElementById('listaPresentaciones');
     contenedor.innerHTML = '<p>Buscando presentaciones...</p>';
@@ -145,7 +95,14 @@ async function abrirModal(eventoId, nombreEvento) {
         const respuesta = await fetch('http://localhost:8080/api/presentaciones');
         const todasLasPresentaciones = await respuesta.json();
 
-        const presentacionesDelEvento = todasLasPresentaciones.filter(p => p.evento.id === eventoId);
+        console.log('eventoId recibido:', eventoId, typeof eventoId);
+        console.log('primera presentacion evento.id:', todasLasPresentaciones[0]?.evento?.id, typeof todasLasPresentaciones[0]?.evento?.id);
+
+        const presentacionesDelEvento = todasLasPresentaciones.filter(p =>
+            parseInt(p.evento.id) === parseInt(eventoId)
+        );
+
+        console.log('presentaciones filtradas:', presentacionesDelEvento.length);
 
         if (presentacionesDelEvento.length === 0) {
             contenedor.innerHTML = '<p>Aún no hay artistas confirmados para este evento.</p>';
@@ -159,8 +116,8 @@ async function abrirModal(eventoId, nombreEvento) {
                     <div>
                         <h3 style="margin:0; color:#00d2ff;">🎤 ${p.artista.nombre_artistico}</h3>
                         <p style="margin:5px 0;">Género: ${p.artista.genero}</p>
-                        <p style="margin:5px 0;"> Escenario: ${p.escenario.nombre}</p>
-                        <p style="margin:0; color:#ccc;"> Horario: ${p.hora_presentacion}</p>
+                        <p style="margin:5px 0;">🏟️ Escenario: ${p.escenario.nombre} - ${p.escenario.ubicacion}</p>
+                        <p style="margin:0; color:#ccc;">🕐 Horario: ${p.hora_presentacion}</p>
                     </div>
                     <button class="btn-presentacion" onclick="guardarPresentacion(${p.id}, '${p.artista.nombre_artistico}', '${nombreEvento}', '${p.hora_presentacion}')">
                         AGREGAR A MI LISTA
@@ -196,21 +153,10 @@ function guardarPresentacion(id, nombreArtista, eventoNombre, hora) {
 
 function guardarEvento(id, nombre, fecha, hora) {
     let usuario = localStorage.getItem('usuarioActual');
-
-    if (!usuario) {
-        alert('Debes iniciar sesión para guardar eventos');
-        return;
-    }
-
+    if (!usuario) { alert('Debes iniciar sesión para guardar eventos'); return; }
     let clave = `misEventos_${usuario}`;
-    let misEventos = JSON.parse(localStorage.getItem(clave)) || []; // ← declarado aquí
-
-    let yaExiste = misEventos.some(e => e && e.id === id);
-    if (yaExiste) {
-        alert('Este evento ya está guardado');
-        return;
-    }
-
+    let misEventos = JSON.parse(localStorage.getItem(clave)) || [];
+    if (misEventos.some(e => e && e.id === id)) { alert('Este evento ya está guardado'); return; }
     misEventos.push({ id, nombre, fecha, hora });
     localStorage.setItem(clave, JSON.stringify(misEventos));
     alert('Evento guardado correctamente');

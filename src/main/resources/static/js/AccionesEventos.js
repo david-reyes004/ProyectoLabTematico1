@@ -16,23 +16,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// --- FUNCIONES DE CARGA ---
-
 function cargarEventosLocales(usuario) {
     let clave = `misEventos_${usuario}`;
     let eventos = JSON.parse(localStorage.getItem(clave)) || [];
     let tabla = document.getElementById("tablaMisEventos");
+    tabla.innerHTML = "";
 
     eventos.forEach(e => {
         let fechaLimpia = e.fecha.split('T')[0];
         let fechaFormateada = fechaLimpia.split('-').reverse().join('/');
-        let fila = `<tr>
+        tabla.innerHTML += `<tr>
             <td>${e.id}</td>
             <td>${e.nombre}</td>
             <td>${fechaFormateada}</td>
             <td>${e.hora}</td>
+            <td><button onclick="eliminarEvento(${e.id})" style="cursor:pointer; background:none; border:none;">❌</button></td>
         </tr>`;
-        tabla.innerHTML += fila;
     });
 }
 
@@ -44,12 +43,12 @@ function cargarPresentacionesLocales(usuario) {
 
     presentaciones.forEach(p => {
         tabla.innerHTML += `<tr>
-    <td>${p.id}</td>
-    <td>${p.eventoNombre}</td>
-    <td>${p.nombreArtista}</td>
-    <td>${p.hora}</td>
-    <td><button onclick="eliminarPresentacion(${p.id})" style="cursor:pointer; background:none; border:none;">❌</button></td>
-    </tr>`;
+            <td>${p.id}</td>
+            <td>${p.eventoNombre}</td>
+            <td>${p.nombreArtista}</td>
+            <td>${p.hora}</td>
+            <td><button onclick="eliminarPresentacion(${p.id})" style="cursor:pointer; background:none; border:none;">❌</button></td>
+        </tr>`;
     });
 }
 
@@ -81,18 +80,18 @@ async function cargarBoletosServidor() {
             return;
         }
 
-        misBoletos.forEach(b => {
-            const nombreUsuario = localStorage.getItem('usuarioActual');
+        const nombreUsuario = localStorage.getItem('usuarioActual');
 
+        misBoletos.forEach(b => {
             const tarjeta = document.createElement('div');
             tarjeta.classList.add('boleto-card');
             tarjeta.innerHTML = `
                 <div class="boleto-ticket">
                     <div class="boleto-izquierda">
-                        <span class="boleto-tag">🎫 BOLETO OFICIAL</span>
+                        <span class="boleto-tag"> BOLETO OFICIAL</span>
                         <h2 class="boleto-evento">${b.nombre}</h2>
                         <p class="boleto-usuario"> ${nombreUsuario}</p>
-                        <p class="boleto-cantidad">🎟️ Cantidad: ${b.compra}</p>
+                        <p class="boleto-cantidad"> Cantidad: ${b.compra}</p>
                     </div>
                     <div class="boleto-separador"></div>
                     <div class="boleto-derecha">
@@ -110,8 +109,6 @@ async function cargarBoletosServidor() {
         contenedor.innerHTML = '<p>No se pudo conectar</p>';
     }
 }
-
-// --- FUNCIONES DE ELIMINAR Y SESIÓN ---
 
 function eliminarEvento(id) {
     let usuario = localStorage.getItem('usuarioActual');
@@ -134,6 +131,7 @@ function eliminarPresentacion(id) {
 function cerrarSesion() {
     if(confirm("¿Seguro que quieres cerrar sesión?")) {
         localStorage.removeItem('usuarioActual');
+        localStorage.removeItem('usuarioId');
         window.location.href = 'iniciarSesion.html';
     }
 }

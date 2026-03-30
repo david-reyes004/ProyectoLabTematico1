@@ -145,17 +145,28 @@ nav a:hover{
     }
 }
 
-div.Text_MisEventos{
+div.Text_MisEventos {
     text-align: center;
     font-size: 20px;
-    color:rgb(253, 217, 0) ;
+    color: rgb(253, 217, 0);
     text-shadow: 0 0 12px rgba(255, 226, 0, 0.81);
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 5px;
-    padding: 2%;
+    padding: 15px;
     border: 1px solid rgb(253, 217, 0);
     box-shadow: 0 0 12px rgba(255, 226, 0, 0.81);
+    width: 90%;
+    margin: 20px auto; /* 👈 centrar */
 }
+
+div.Text_MisEventos h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+}
+
 .tabla_eventos{
     color: #ffffff;
     border-radius: 15px;
@@ -217,4 +228,151 @@ div.Text_MisEventos{
     margin-top: 10px;
     color: #4caf50;
     font-weight: bold;
+}
+
+/* ===== BOLETOS ===== */
+.boleto-ticket {
+    display: flex;
+    align-items: center;
+    border: 2px dashed #f0a500;
+    border-radius: 16px;
+    max-width: 600px;
+    margin: 15px auto;
+    background: #1a1a2e;
+    color: white;
+    overflow: hidden;
+}
+
+.boleto-izquierda {
+    padding: 20px;
+    flex: 2;
+}
+
+.boleto-separador {
+    width: 2px;
+    align-self: stretch;
+    background: repeating-linear-gradient(
+            to bottom,
+            #f0a500 0px, #f0a500 8px,
+            transparent 8px, transparent 16px
+    );
+}
+
+.boleto-derecha {
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    background: #0f0f1a;
+}
+
+.boleto-tag {
+    background: #f0a500;
+    color: black;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.boleto-evento {
+    margin: 10px 0 6px;
+    font-size: 1.2rem;
+    color: #f0a500;
+}
+
+.boleto-usuario {
+    margin: 4px 0;
+    color: #ccc;
+}
+
+.boleto-cantidad {
+    margin: 4px 0;
+    color: #ccc;
+}
+
+.boleto-estado {
+    display: inline-block;
+    margin-top: 10px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* ===== PRESENTACIONES ===== */
+.presentacion-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a1a2e;
+    border: 1px solid #00d2ff;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 10px 0;
+    color: white;
+}
+
+.btn-presentacion {
+    background: #00d2ff;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.btn-presentacion:hover {
+    background: #0099cc;
+}
+
+/* ===== MODAL ===== */
+.modal-oculto {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalPresentaciones {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+}
+
+.modal-contenido {
+    background: #1a1a2e;
+    border: 2px solid #f0a500;
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    color: white;
+}
+
+.modal-contenido h2 {
+    color: #f0a500;
+    margin-bottom: 15px;
+}
+
+.btn-cerrar-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
