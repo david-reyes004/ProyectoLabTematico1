@@ -1,18 +1,11 @@
 package com.proyecto.lab_tem1.dto;
 
-
-import com.proyecto.lab_tem1.dto.LoginDTO;
-import java.util.Optional;
-
-
-public class LoginDTO{
+public class LoginDTO {
     private String correo;
     private String password;
 
-    public String getCorreo() {return correo;}
-    public void setCorreo(String correo) {this.correo = correo;}
-
-    public String getPassword() {return password;}
-    public void setPassword(String password) {this.password = password;}
-
+    public String getCorreo() { return correo; }
+    public void setCorreo(String correo) { this.correo = correo; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }

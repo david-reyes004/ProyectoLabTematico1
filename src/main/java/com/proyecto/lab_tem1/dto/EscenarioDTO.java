@@ -1,18 +1,11 @@
-package com.proyecto.lab_tem1.entity;
+package com.proyecto.lab_tem1.dto;
 
-import jakarta.persistence.*;
+public class EscenarioDTO {
 
-@Entity
-@Table(name = "escenarios")
-public class Escenario {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String capacidad;
     private String ubicacion;
-    private long eventosIdEventos;
+    private String id_escenario;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -23,6 +16,6 @@ public class Escenario {
     public String getUbicacion() { return ubicacion; }
     public void setUbicacion(String ubicacion) { this.ubicacion = ubicacion; }
 
-    public long getEventosIdEventos() { return eventosIdEventos; }
-    public void setEventosIdEventos(long eventosIdEventos) { this.eventosIdEventos = eventosIdEventos; }
+    public String getId_escenario() { return id_escenario; }
+    public void setId_escenario(String id_escenario) { this.id_escenario = id_escenario; }
 }
