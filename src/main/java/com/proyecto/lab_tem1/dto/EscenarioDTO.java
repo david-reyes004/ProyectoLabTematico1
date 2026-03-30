@@ -2,12 +2,16 @@ package com.proyecto.lab_tem1.dto;
 
 public class EscenarioDTO {
     private long id;
+    private String nombre;
     private String capacidad;
     private String id_escenario;
     private String ubicacion;
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
     public String getCapacidad() { return capacidad; }
     public void setCapacidad(String capacidad) { this.capacidad = capacidad; }

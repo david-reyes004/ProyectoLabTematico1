@@ -12,20 +12,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datosUsuario)
-            })
+            });
+
             console.log('Status:', response.status);
-            console.log('Respuesta:', await response.text());
+
+            const texto = await response.text();
+            console.log('Respuesta raw:', texto);
+            console.log('response.ok:', response.ok);
+            console.log('response.status:', response.status);
+
+            const usuario = JSON.parse(texto);
+
+            console.log('Antes de guardar - usuarioId:', usuario.id);
+            localStorage.setItem('usuarioId', String(usuario.id));
+            console.log('Después de guardar:', localStorage.getItem('usuarioId'));
+
+
             if (response.ok) {
-                localStorage.setItem('usuarioActual', document.getElementById('correo').value);
+                localStorage.setItem('usuarioActual', usuario.correo);
+                localStorage.setItem('usuarioId', String(usuario.id));
+
+                console.log('usuarioId guardado:', localStorage.getItem('usuarioId'));
+
                 document.getElementById('mensaje').textContent = '✓ Inicio de Sesion exitoso';
                 document.getElementById('formInicio').reset();
-                window.location.href = '/paginaPrincipal.html';
+
+                setTimeout(() => {
+                    window.location.href = '/paginaPrincipal.html';
+                }, 100);
             } else {
                 document.getElementById('mensaje').textContent = 'Error al Iniciar sesion';
             }
-        }catch(err){
+        } catch(err) {
             document.getElementById('mensaje').textContent = 'No se pudo iniciar Sesion';
-            console.error(err);
+            console.error('Error completo:', err); // 👈 ver el error completo
         }
     })
 })
