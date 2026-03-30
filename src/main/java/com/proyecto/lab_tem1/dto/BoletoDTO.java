@@ -8,6 +8,16 @@ public class BoletoDTO {
     private long eventoId;
     private long usuarioId;
 
+    private long presentacionId;
+
+    public long getPresentacionId() {
+        return presentacionId;
+    }
+
+    public void setPresentacionId(long presentacionId) {
+        this.presentacionId = presentacionId;
+    }
+
     public long getId() {
         return id;
     }

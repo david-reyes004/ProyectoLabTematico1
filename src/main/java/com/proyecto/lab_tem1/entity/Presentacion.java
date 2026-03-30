@@ -12,6 +12,10 @@ public class Presentacion {
 
     private String hora_presentacion;
 
+    @ManyToOne
+    @JoinColumn(name = "eventos_id_eventos")
+    private Eventos evento;
+
     // Relación con Artista
     @ManyToOne
     @JoinColumn(name = "artistas_id_artistas")
