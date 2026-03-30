@@ -22,14 +22,13 @@ public class EventosService {
         List<EventosDTO> lista = new ArrayList<>();
         List<Eventos> eventos = eventosRepository.findAll();
 
-        // Cambié 'eventos: Eventos' por 'e : eventos' para evitar conflicto de nombres
         for (Eventos e : eventos){
             EventosDTO eventosDTO = new EventosDTO();
 
             eventosDTO.setId(e.getId());
             eventosDTO.setNombre(e.getNombre());
             eventosDTO.setFecha(e.getFecha());
-            eventosDTO.setHora_inicio(e.getHora_inicio());
+            eventosDTO.setHoraInicio(e.getHoraInicio());
 
             lista.add(eventosDTO);
         }
@@ -40,15 +39,13 @@ public class EventosService {
         Eventos eventosEntity = new Eventos();
         eventosEntity.setId(eventosDTO.getId());
         eventosEntity.setNombre(eventosDTO.getNombre());
-        eventosEntity.setFecha(eventosDTO.getFecha());
-        eventosEntity.setHora_inicio(eventosDTO.getHora_inicio());
+        eventosEntity.setHoraInicio(eventosDTO.getHoraInicio());
 
         Eventos eventos2 = eventosRepository.save(eventosEntity);
         eventosDTO.setId(eventos2.getId());
         return eventosDTO;
     }
 
-    // Corregido a findById (con 'd' minúscula) para que coincida con el repositorio
     public EventosDTO findById(Long id){
         Eventos eventos = eventosRepository.findById(id).get();
         EventosDTO eventosDTO = new EventosDTO();
@@ -56,7 +53,7 @@ public class EventosService {
         eventosDTO.setId(eventos.getId());
         eventosDTO.setNombre(eventos.getNombre());
         eventosDTO.setFecha(eventos.getFecha());
-        eventosDTO.setHora_inicio(eventos.getHora_inicio());
+        eventosDTO.setHoraInicio(eventos.getHoraInicio());
 
         return eventosDTO;
     }

@@ -8,19 +8,210 @@ async function cargarEventos() {
         const respuesta = await fetch('http://localhost:8080/eventos');
         const eventos = await respuesta.json();
 
+        console.log('primer evento:', eventos[0]);
+
         contenedor.innerHTML = '';
         eventos.forEach(evento => {
             contenedor.innerHTML += `
                 <div class="evento-card">
-                    <h3>Evento #${evento.id}</h3>
-                    <p>Nombre: ${evento.nombre}</p>
-                    <p>Fecha: ${evento.fecha}</p>
-                    <h3>Hora: ${evento.horaInicio}hrs</h3>
-                    <button class="btn-comprar">VER BOLETOS</button>
+                    <h3>#${evento.id}</h3>
+                    <hr class="linea">
+                    <p>${evento.nombre}</p>
+                    <hr class="linea">
+                    <p>Fecha: ${new Date(evento.fecha).toLocaleDateString('es-MX')}</p>
+                    <p>Hora: ${evento.horaInicio} hrs</p>
+                    <br>
+                    <div class="botones-container">
+                        <button class="btn-guardar" onclick="event.stopPropagation(); guardarEvento(${evento.id}, '${evento.nombre}', '${evento.fecha}', '${evento.horaInicio}')">⭐ GUARDAR</button>
+                        <button class="btn-comprar-real" onclick="event.stopPropagation(); comprarBoleto(${evento.id}, '${evento.nombre}', ${evento.precio || 1500})">🎫 COMPRAR</button>
+                    </div>
+                    <button class="btn-comprar" onclick="guardarEvento(${evento.id}, '${evento.nombre}', '${evento.fecha}', '${evento.horaInicio}')">GUARDAR BOLETOS</button>
                 </div>
             `;
         });
     } catch (error) {
         contenedor.innerHTML = '<p>ERROR AL CONECTAR CON EL SERVIDOR</p>';
     }
+}
+
+async function comprarBoleto(eventoId, nombreEvento, precio) {
+    const usuarioEmail = localStorage.getItem('usuarioActual');
+    const usuarioId = parseInt(localStorage.getItem('usuarioId'));
+
+    if (!usuarioEmail) {
+        alert('¡Hey! Inicia sesión para comprar tu boleto.');
+        return;
+    }
+
+    if (!usuarioId) {
+        alert('Error: no se encontró tu sesión. Vuelve a iniciar sesión.');
+        return;
+    }
+
+    const cantidad = parseInt(prompt(`¿Cuántos boletos deseas comprar para ${nombreEvento}?`));
+    if (!cantidad || cantidad <= 0) return;
+
+    const precioTotal = cantidad * precio;
+    const confirmar = confirm(`Total a pagar: $${precioTotal}. ¿Confirmas la compra?`);
+    if (!confirmar) return;
+
+    const datosBoleto = {
+        nombre: `General - ${nombreEvento}`,
+        compra: cantidad,
+        precio: precioTotal,
+        eventoId: eventoId,
+        usuarioId: usuarioId
+    };
+
+    console.log('enviando:', JSON.stringify(datosBoleto));
+
+    try {
+        const respuesta = await fetch('http://localhost:8080/boletos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datosBoleto)
+        });
+
+        if (respuesta.ok) {
+            const resultado = await respuesta.json();
+
+            const boleto = {
+                id: resultado.id,
+                nombre: nombreEvento,
+                cantidad: cantidad,
+                precio: precioTotal,
+                usuario: usuarioEmail,
+                fecha: new Date().toLocaleDateString('es-MX', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                })
+            };
+
+            mostrarBoleto(boleto);
+            alert(`¡Compra exitosa! 🎉 Tu boleto tiene el ID: ${resultado.id}`);
+
+        } else {
+            const errorText = await respuesta.text();
+            console.error('Error del servidor:', errorText);
+            alert('Error en el servidor al procesar la compra.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('No se pudo conectar con el servidor.');
+    }
+}
+
+function mostrarBoleto(boleto) {
+    const contenedor = document.getElementById('contenedor-boletos');
+    if (!contenedor) return;
+
+    if (!contenedor) {
+        console.error('No existe el div contenedor-boletos en el HTML');
+        return;
+    }
+
+    const tarjeta = document.createElement('div');
+    tarjeta.classList.add('boleto-card');
+    tarjeta.innerHTML = `
+        <div id="contenedor-boletos">
+            <div class="boleto-izquierda">
+                <span class="boleto-tag">🎫 BOLETO OFICIAL</span>
+                <h2 class="boleto-evento">${boleto.nombre}</h2>
+                <p class="boleto-usuario"> ${boleto.usuario}</p>
+                <p class="boleto-fecha">📅 ${boleto.fecha}</p>
+            </div>
+            <div class="boleto-separador"></div>
+            <div class="boleto-derecha">
+                <p>ID: <strong>#${boleto.id}</strong></p>
+                <p>Cantidad: <strong>${boleto.cantidad}</strong></p>
+                <p>Total: <strong>$${boleto.precio}</strong></p>
+                <span class="boleto-estado">✅ Confirmado</span>
+            </div>
+        </div>
+    `;
+
+    contenedor.appendChild(tarjeta);
+    tarjeta.scrollIntoView({ behavior: 'smooth' });
+}
+
+// --- RESTO DE TUS FUNCIONES (Abajo se quedan igual) ---
+
+async function abrirModal(eventoId, nombreEvento) {
+    document.getElementById('modalPresentaciones').style.display = 'block';
+    document.getElementById('tituloModal').innerText = `Presentaciones de: ${nombreEvento}`;
+    const contenedor = document.getElementById('listaPresentaciones');
+    contenedor.innerHTML = '<p>Buscando presentaciones...</p>';
+
+    try {
+        const respuesta = await fetch('http://localhost:8080/api/presentaciones');
+        const todasLasPresentaciones = await respuesta.json();
+
+        const presentacionesDelEvento = todasLasPresentaciones.filter(p => p.evento.id === eventoId);
+
+        if (presentacionesDelEvento.length === 0) {
+            contenedor.innerHTML = '<p>Aún no hay artistas confirmados para este evento.</p>';
+            return;
+        }
+
+        contenedor.innerHTML = '';
+        presentacionesDelEvento.forEach(p => {
+            contenedor.innerHTML += `
+                <div class="presentacion-card">
+                    <div>
+                        <h3 style="margin:0; color:#00d2ff;">🎤 ${p.artista.nombre_artistico}</h3>
+                        <p style="margin:5px 0;">Género: ${p.artista.genero}</p>
+                        <p style="margin:5px 0;"> Escenario: ${p.escenario.nombre}</p>
+                        <p style="margin:0; color:#ccc;"> Horario: ${p.hora_presentacion}</p>
+                    </div>
+                    <button class="btn-presentacion" onclick="guardarPresentacion(${p.id}, '${p.artista.nombre_artistico}', '${nombreEvento}', '${p.hora_presentacion}')">
+                        AGREGAR A MI LISTA
+                    </button>
+                </div>
+            `;
+        });
+    } catch (error) {
+        contenedor.innerHTML = '<p>Error al cargar las presentaciones.</p>';
+    }
+}
+
+function cerrarModal() {
+    document.getElementById('modalPresentaciones').style.display = 'none';
+}
+
+function guardarPresentacion(id, nombreArtista, eventoNombre, hora) {
+    let usuario = localStorage.getItem('usuarioActual');
+    if (!usuario) { alert('Debes iniciar sesión'); return; }
+
+    let clave = `misPresentaciones_${usuario}`;
+    let misPresentaciones = JSON.parse(localStorage.getItem(clave)) || [];
+
+    if (misPresentaciones.some(p => p && p.id === id)) {
+        alert('Ya guardaste esta presentación');
+        return;
+    }
+
+    misPresentaciones.push({ id, nombreArtista, eventoNombre, hora });
+    localStorage.setItem(clave, JSON.stringify(misPresentaciones));
+    alert('¡Presentación guardada en tu itinerario!');
+}
+
+function guardarEvento(id, nombre, fecha, hora) {
+    let usuario = localStorage.getItem('usuarioActual');
+
+    if (!usuario) {
+        alert('Debes iniciar sesión para guardar eventos');
+        return;
+    }
+
+    let clave = `misEventos_${usuario}`;
+    let misEventos = JSON.parse(localStorage.getItem(clave)) || []; // ← declarado aquí
+
+    let yaExiste = misEventos.some(e => e && e.id === id);
+    if (yaExiste) {
+        alert('Este evento ya está guardado');
+        return;
+    }
+
+    misEventos.push({ id, nombre, fecha, hora });
+    localStorage.setItem(clave, JSON.stringify(misEventos));
+    alert('Evento guardado correctamente');
 }

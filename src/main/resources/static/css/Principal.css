@@ -15,6 +15,11 @@ main{
     flex: 1;
     margin-top: 60px;
 }
+
+p{
+    text-align: center;
+    font-size: 14px;
+}
 footer {
     padding: 15px;
     left: 0;
@@ -138,4 +143,78 @@ nav a:hover{
     .texto p{
         font-size: 14px;
     }
+}
+
+div.Text_MisEventos{
+    text-align: center;
+    font-size: 20px;
+    color:rgb(253, 217, 0) ;
+    text-shadow: 0 0 12px rgba(255, 226, 0, 0.81);
+    display: flex;
+    margin-top: 5px;
+    padding: 2%;
+    border: 1px solid rgb(253, 217, 0);
+    box-shadow: 0 0 12px rgba(255, 226, 0, 0.81);
+}
+.tabla_eventos{
+    color: #ffffff;
+    border-radius: 15px;
+    border: 1px solid rgb(253, 217, 0);
+    box-shadow: 0 0 12px rgba(255, 226, 0, 0.81);
+}
+
+.boleto-ticket {
+    display: flex;
+    align-items: center;
+    border: 2px dashed #f0a500;
+    border-radius: 16px;
+    max-width: 600px;
+    margin: 15px auto;
+    background: #1a1a2e;
+    color: white;
+    overflow: hidden;
+}
+
+.boleto-izquierda {
+    padding: 20px;
+    flex: 2;
+}
+
+.boleto-separador {
+    width: 2px;
+    align-self: stretch;
+    background: repeating-linear-gradient(
+            to bottom,
+            #f0a500 0px, #f0a500 8px,
+            transparent 8px, transparent 16px
+    );
+}
+
+.boleto-derecha {
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    background: #0f0f1a;
+}
+
+.boleto-tag {
+    background: #f0a500;
+    color: black;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.boleto-evento {
+    margin: 10px 0 6px;
+    font-size: 1.2rem;
+    color: #f0a500;
+}
+
+.boleto-estado {
+    display: inline-block;
+    margin-top: 10px;
+    color: #4caf50;
+    font-weight: bold;
 }

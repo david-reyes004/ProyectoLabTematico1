@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import java.sql.Time;
 import java.util.Date;
@@ -16,7 +18,11 @@ public class Eventos {
     private long id;
     private String nombre;
     private Date fecha;
-    private Time hora_inicio;
+    private Time horaInicio;
+    private double precio;
+
+    public double getPrecio() { return precio; }
+    public void setPrecio(double precio) { this.precio = precio; }
 
     public long getId() {
         return id;
@@ -38,11 +44,7 @@ public class Eventos {
         this.fecha = fecha;
     }
 
-    public Time getHora_inicio() {
-        return hora_inicio;
-    }
+    public Time getHoraInicio() { return horaInicio; }
 
-    public void setHora_inicio(Time hora_inicio) {
-        this.hora_inicio = hora_inicio;
-    }
+    public void setHoraInicio(Time horaInicio) { this.horaInicio = horaInicio;}
 }

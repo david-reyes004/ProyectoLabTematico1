@@ -46,7 +46,7 @@ public class EscenarioService {
 
     private EscenarioDTO toDTO(Escenario escenario) {
         EscenarioDTO dto = new EscenarioDTO();
-        dto.setId(escenario.getId());
+        dto.setId_escenario(escenario.getId().toString());
         dto.setCapacidad(escenario.getCapacidad());
         dto.setUbicacion(escenario.getUbicacion());
         dto.setId_escenario(String.valueOf(escenario.getEventosIdEventos()));

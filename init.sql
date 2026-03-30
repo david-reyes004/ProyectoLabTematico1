@@ -1,10 +1,14 @@
 create database proyectoLabTem1;
 
-#create table Boleto();
-
 describe usuarios;
 
 describe artistas;
+
+describe escenarios;
+
+describe boletos;
+
+describe presentaciones;
 
 SELECT * from usuarios;
 
@@ -14,23 +18,41 @@ SELECT * FROM usuarios WHERE id ='5';
 
 SELECT *FROM artistas;
 
+SELECT *from escenarios;
+
+SELECT * FROM presentaciones;
+
 SELECT * from boletos;
 
 DELETE FROM usuarios WHERE id = '2';
+
+DELETE FROM boletos WHERE id_boletos =1;
+
+DELETE FROM eventos WHERE id = 5;
 
 insert into usuarios (nombre, correo, password)
 values ( 'Raul', 'raul@gmail.com', '8769');
 
 ALTER TABLE eventos DROP COLUMN hora_iniciol;
 
-INSERT INTO eventos (nombre, fecha, hora_inicio)
-VALUES ('EDC', '2026-04-20', '13:00:00');
+ALTER TABLE eventos ADD COLUMN precio DOUBLE DEFAULT 1500.00;
+
+INSERT INTO eventos (nombre, fecha, hora_inicio, precio)
+VALUES ('Corona Capital', '2026-11-20', '13:00:00', 1500.00);
 
 INSERT INTO artistas (genero, nombre_artistico)
-VALUES ('RAP','Ice cube');
+VALUES ('ELECTRONICA','Avicii');
 
 INSERT INTO boletos (compra, precio, eventos_id_eventos, usuarios_id_usuarios, nombre)
 VALUES ('UN boleto', 1500, 1, 1, 'luis');
 
+INSERT INTO escenarios(nombre,capacidad,eventos_id_eventos,ubicacion)
+VALUES ('Orbiz','7500',8,'Belgica')
+
+INSERT INTO presentaciones(hora_presentacion, artistas_id_artistas, escenarios_id_escenarios, eventos_id_eventos)
+VALUES ('17:00 HRS',6,7,8)
+
+
+DELETE FROM boletos;
 
 
