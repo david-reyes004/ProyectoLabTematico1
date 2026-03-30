@@ -2,6 +2,7 @@ package com.proyecto.lab_tem1.dto;
 
 import java.sql.Time;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
