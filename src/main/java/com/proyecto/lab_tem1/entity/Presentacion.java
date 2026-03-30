@@ -1,10 +1,12 @@
 package com.proyecto.lab_tem1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "presentaciones")
 public class Presentacion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_presentaciones")
@@ -12,20 +14,21 @@ public class Presentacion {
 
     private String hora_presentacion;
 
-    // Relación con Artista
     @ManyToOne
     @JoinColumn(name = "artistas_id_artistas")
+    @JsonIgnoreProperties({"presentaciones", "hibernateLazyInitializer"})
     private Artista artista;
 
-    // Relación con Eventos
     @ManyToOne
     @JoinColumn(name = "eventos_id_eventos")
+    @JsonIgnoreProperties({"presentaciones", "boletos", "hibernateLazyInitializer"})
     private Eventos evento;
 
-    // Relación con Escenario
     @ManyToOne
     @JoinColumn(name = "escenarios_id_escenarios")
+    @JsonIgnoreProperties({"presentaciones", "hibernateLazyInitializer"})
     private Escenario escenario;
+
 
     public long getId() {
         return id;

@@ -19,6 +19,10 @@ public class Eventos {
     private String nombre;
     private Date fecha;
     private Time horaInicio;
+    private double precio;
+
+    public double getPrecio() { return precio; }
+    public void setPrecio(double precio) { this.precio = precio; }
 
     public long getId() {
         return id;

@@ -16,7 +16,7 @@ public class BoletoController {
     private BoletoService boletoService;
 
     @GetMapping("/boletos")
-    public List<Boleto> listarBoletos() {return boletoService.obtenerTodos();}
+    public List<BoletoDTO> listarBoletos() { return boletoService.obtenerTodosDTO(); }
 
 
     @PostMapping("/boletos")
@@ -25,7 +25,7 @@ public class BoletoController {
         boleto.setNombre(boletoDTO.getNombre());
         boleto.setPrecio(boletoDTO.getPrecio());
         boleto.setCompra(boletoDTO.getCompra());
-        return boletoService.guardar(boleto);
+        return boletoService.guardar(boleto, boletoDTO.getEventoId(), boletoDTO.getUsuarioId()); // 👈
     }
 
 }

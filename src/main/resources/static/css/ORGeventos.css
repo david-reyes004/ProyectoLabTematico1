@@ -12,8 +12,8 @@
     text-align: center;
 }
 .evento-card{
-    border: 2px solid #00d4ff;
-    box-shadow:  0 0 12px rgba(66, 255, 154, 0.81);
+    border: 2px rgb(253, 217, 0);
+    box-shadow:  0 0 12px rgba(255, 226, 0, 0.81);
     border-radius: 10px;
     padding: 15px;
     width: 250px;
@@ -25,8 +25,8 @@
     color: black;
     border: 2px solid #00d4ff;
     border-radius: 10px;
-    background-color: rgb(253, 217, 0);
-    box-shadow: 0 0 12px rgba(255, 232, 66, 0.81)
+    background-color:  #00d4ff;
+    box-shadow: 0 0 12px rgba(66, 255, 154, 0.81)
 }
 .btn-comprar{
     color: white;
@@ -37,8 +37,8 @@
 }
 .btn-comprar:hover{
     color: black;
-    background-color:#00d4ff ;
-    box-shadow:  0 0 12px rgba(66, 255, 154, 0.81);
+    background-color:rgb(253, 217, 0);
+    box-shadow:  0 0 12px rgba(255, 226, 0, 0.81);
 }
 .evento-card h3.evento-card p{
     display: block;
